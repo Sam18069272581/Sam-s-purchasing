@@ -1,0 +1,43 @@
+<view class="search">
+  <input class="search-input" placeholder="搜索商品" confirm-type="search" bindinput="onSearch" value="{{keyword}}" />
+</view>
+<view class="body">
+  <scroll-view class="side" scroll-y>
+    <view wx:for="{{categories}}" wx:key="id" class="side-item {{activeCat === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="onCatTap">{{item.name}}</view>
+  </scroll-view>
+  <scroll-view class="main" scroll-y scroll-into-view="{{scrollTo}}" scroll-with-animation>
+    <view wx:for="{{groups}}" wx:for-item="g" wx:key="id" id="cat-{{g.id}}">
+      <view class="group-title">{{g.name}}</view>
+      <view wx:for="{{g.items}}" wx:key="id" class="goods">
+        <image wx:if="{{item.image}}" class="goods-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view wx:else class="goods-img placeholder-img" style="background: {{g.color}}">{{item.initial}}</view>
+        <view class="goods-info">
+          <view class="goods-name">{{item.name}}</view>
+          <view class="muted">{{item.spec}}</view>
+          <view class="goods-bottom">
+            <view class="price"><text class="unit">¥</text>{{item.priceText}}</view>
+            <view class="stepper">
+              <block wx:if="{{qty[item.id]}}">
+                <view class="s-btn minus" data-id="{{item.id}}" catchtap="onMinus">−</view>
+                <view class="num">{{qty[item.id]}}</view>
+              </block>
+              <view class="s-btn plus" data-id="{{item.id}}" catchtap="onAdd">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!groups.length}}" class="empty">没有找到相关商品</view>
+    <view style="height: 140rpx"></view>
+  </scroll-view>
+</view>
+<view wx:if="{{cartCount}}" class="cart-bar" bindtap="goCart">
+  <view class="cart-left">
+    <view class="cart-count">{{cartCount}}</view>
+    <view>
+      <view class="price white">¥{{cartTotal}}</view>
+      <view class="free-tip" wx:if="{{freeTip}}">{{freeTip}}</view>
+    </view>
+  </view>
+  <view class="cart-go">去购物车</view>
+</view>

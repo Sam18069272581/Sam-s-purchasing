@@ -1,0 +1,35 @@
+<view wx:if="{{!list.length}}" class="empty">
+  <view>购物车还是空的</view>
+  <button class="btn-primary go" size="mini" bindtap="goShop">去逛逛</button>
+</view>
+<block wx:else>
+  <view class="toolbar"><text class="muted">共 {{list.length}} 种商品</text><text class="link" bindtap="onClear">删除选中</text></view>
+  <view class="card item" wx:for="{{list}}" wx:key="id">
+    <checkbox-group bindchange="onToggle" data-id="{{item.id}}"><checkbox value="1" checked="{{item.checked}}" color="#0b4ea2" /></checkbox-group>
+    <image wx:if="{{item.image}}" class="img" src="{{item.image}}" mode="aspectFill" />
+    <view wx:else class="img placeholder-img" style="background:#3a7bbf">{{item.initial}}</view>
+    <view class="info">
+      <view>{{item.name}}</view>
+      <view class="muted">{{item.spec}}</view>
+      <view class="row">
+        <view class="price">¥{{item.priceText}}</view>
+        <view class="stepper">
+          <view class="s-btn minus" data-id="{{item.id}}" bindtap="onMinus">−</view>
+          <view class="num">{{item.qty}}</view>
+          <view class="s-btn plus" data-id="{{item.id}}" bindtap="onPlus">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="line"><text>商品金额</text><text>¥{{goodsText}}</text></view>
+    <view class="line"><text>配送费（预估）</text><text>¥{{feeText}}</text></view>
+    <view class="muted" wx:if="{{freeTip}}">{{freeTip}}</view>
+  </view>
+  <view style="height:140rpx"></view>
+  <view class="bottom">
+    <checkbox-group bindchange="onToggleAll"><label><checkbox value="1" checked="{{allChecked}}" color="#0b4ea2" />全选</label></checkbox-group>
+    <view class="sum">合计 <text class="price">¥{{totalText}}</text></view>
+    <button class="btn-primary pay" bindtap="onCheckout">结算({{checkedCount}})</button>
+  </view>
+</block>

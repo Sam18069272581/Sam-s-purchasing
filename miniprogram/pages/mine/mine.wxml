@@ -1,0 +1,38 @@
+<view class="head">
+  <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" disabled="{{!u.loggedIn}}">
+    <image class="avatar" src="{{u.avatar || '/images/avatar.png'}}" mode="aspectFill" />
+  </button>
+  <view class="head-info">
+    <block wx:if="{{u.loggedIn}}">
+      <input class="nick" type="nickname" placeholder="点击设置昵称" value="{{u.nickname}}" bindblur="onNickname" />
+      <view class="sub">已登录</view>
+    </block>
+    <block wx:else>
+      <view class="nick">未登录</view>
+      <view class="sub">登录后可下单和保存收货地址</view>
+    </block>
+  </view>
+</view>
+
+<view wx:if="{{!u.loggedIn}}" class="card">
+  <button class="btn-primary" bindtap="onLogin">微信一键登录</button>
+  <checkbox-group bindchange="onAgree" class="agree"><label><checkbox value="1" color="#0b4ea2" />我已阅读并同意《用户协议》和《隐私政策》</label></checkbox-group>
+</view>
+
+<view class="card menu">
+  <view class="menu-item" bindtap="goAddress">
+    <view>
+      <view>收货地址</view>
+      <view class="muted" wx:if="{{u.address}}">{{u.address.name}} {{u.address.phone}} · {{u.address.detail}}</view>
+      <view class="muted" wx:else>未填写（姓名、电话、地址）</view>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+  <view class="menu-item" bindtap="goOrders">
+    <view>我的订单</view>
+    <view><text class="muted">{{orderCount}} 笔</text><text class="arrow">›</text></view>
+  </view>
+  <button class="menu-item contact" open-type="contact"><view>联系代购员</view><text class="arrow">›</text></button>
+</view>
+
+<view wx:if="{{u.loggedIn}}" class="logout" bindtap="onLogout">退出登录</view>

@@ -1,0 +1,33 @@
+<view class="card addr" bindtap="editAddress">
+  <block wx:if="{{address && address.name}}">
+    <view class="addr-top"><text class="b">{{address.name}}</text><text class="ml">{{address.phone}}</text></view>
+    <view class="muted">{{address.region}} {{address.detail}}</view>
+  </block>
+  <view wx:else class="addr-empty">+ 填写收货地址</view>
+  <text class="arrow">›</text>
+</view>
+
+<view class="card">
+  <view class="it" wx:for="{{items}}" wx:key="id">
+    <view class="it-name">{{item.name}}<text class="muted"> {{item.spec}}</text></view>
+    <view class="muted">¥{{item.priceText}} × {{item.qty}}</view>
+    <view class="it-sub">¥{{item.subText}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="line"><text>商品总金额</text><text>¥{{goodsText}}</text></view>
+  <view class="line"><text>配送费</text><text>¥{{feeText}}</text></view>
+  <view class="muted" wx:if="{{feeNote}}">{{feeNote}}</view>
+  <view class="line total"><text>应付总额</text><text class="price">¥{{totalText}}</text></view>
+</view>
+
+<view class="card">
+  <textarea class="remark" placeholder="备注（如：没货可换同类、送到村口小卖部）" maxlength="200" bindinput="onRemark" auto-height />
+</view>
+<view class="muted tip">提交后代购员会联系你确认商品和收款方式。</view>
+<view style="height:140rpx"></view>
+<view class="bottom">
+  <view class="sum">应付 <text class="price big">¥{{totalText}}</text></view>
+  <button class="btn-primary pay" loading="{{submitting}}" disabled="{{submitting}}" bindtap="onSubmit">提交订单</button>
+</view>

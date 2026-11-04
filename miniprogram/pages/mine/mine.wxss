@@ -1,0 +1,16 @@
+.head { background: #0b4ea2; color: #fff; display: flex; align-items: center; padding: 40rpx 36rpx 60rpx; }
+.avatar-btn { width: 120rpx !important; height: 120rpx; padding: 0 !important; margin: 0 !important; border-radius: 50%; background: transparent !important; }
+.avatar-btn::after { border: none; }
+.avatar { width: 120rpx; height: 120rpx; border-radius: 50%; background: #dfe6f0; }
+.head-info { margin-left: 28rpx; flex: 1; }
+.nick { font-size: 34rpx; font-weight: 600; color: #fff; }
+.sub { font-size: 24rpx; color: #c9d6ea; margin-top: 6rpx; }
+.agree { margin-top: 20rpx; font-size: 22rpx; color: #8a9099; }
+.agree checkbox { transform: scale(.7); }
+.menu { padding: 0 24rpx; }
+.menu-item { display: flex; justify-content: space-between; align-items: center; padding: 30rpx 0; border-bottom: 2rpx solid #f0f1f3; font-size: 28rpx; text-align: left; }
+.menu-item:last-child { border-bottom: none; }
+.contact { background: #fff !important; margin: 0 !important; padding: 30rpx 0 !important; line-height: normal; width: 100% !important; font-weight: normal; border-radius: 0; }
+.contact::after { border: none; }
+.arrow { color: #b8bec7; font-size: 36rpx; margin-left: 10rpx; }
+.logout { text-align: center; color: #e4393c; margin: 40rpx; }

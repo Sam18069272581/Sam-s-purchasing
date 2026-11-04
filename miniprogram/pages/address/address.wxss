@@ -1,0 +1,8 @@
+.field { display: flex; align-items: center; padding: 26rpx 0; border-bottom: 2rpx solid #f0f1f3; }
+.field:last-child { border-bottom: none; }
+.label { width: 150rpx; color: #4a4f57; flex-shrink: 0; }
+.val { flex: 1; font-size: 28rpx; }
+.ph { color: #b8bec7; }
+.loc { margin-left: 10rpx; }
+.tip { padding: 0 30rpx; }
+.save { margin: 50rpx 30rpx; }

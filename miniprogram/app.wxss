@@ -1,0 +1,14 @@
+page { background: #f5f6f8; color: #1f2329; font-size: 28rpx; font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; }
+.price { color: #e4393c; font-weight: 600; }
+.price .unit { font-size: 22rpx; }
+.muted { color: #8a9099; font-size: 24rpx; }
+.card { background: #fff; border-radius: 16rpx; margin: 20rpx 24rpx; padding: 24rpx; }
+.btn-primary { background: #0b4ea2 !important; color: #fff !important; border-radius: 44rpx !important; font-size: 30rpx !important; }
+.btn-primary[disabled] { background: #a9b9cf !important; }
+.placeholder-img { display: flex; align-items: center; justify-content: center; color: #fff; font-size: 44rpx; font-weight: 600; }
+.stepper { display: flex; align-items: center; }
+.stepper .s-btn { width: 48rpx; height: 48rpx; line-height: 44rpx; text-align: center; border-radius: 50%; font-size: 34rpx; }
+.stepper .minus { border: 2rpx solid #c9ced6; color: #555; }
+.stepper .plus { background: #0b4ea2; color: #fff; }
+.stepper .num { min-width: 56rpx; text-align: center; }
+.empty { text-align: center; padding: 160rpx 0; color: #8a9099; }

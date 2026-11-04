@@ -1,0 +1,4 @@
+.top { display: flex; justify-content: space-between; }
+.status { color: #0b4ea2; font-size: 26rpx; }
+.items { margin: 16rpx 0; line-height: 1.5; }
+.foot { text-align: right; margin-top: 12rpx; }

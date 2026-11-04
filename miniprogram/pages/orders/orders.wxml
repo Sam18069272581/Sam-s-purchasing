@@ -1,0 +1,7 @@
+<view wx:if="{{!list.length}}" class="empty">还没有订单</view>
+<view class="card" wx:for="{{list}}" wx:key="id">
+  <view class="top"><text class="muted">{{item.timeText}} · {{item.id}}</text><text class="status">{{item.status}}</text></view>
+  <view class="items">{{item.summaryText}}</view>
+  <view class="muted">送至：{{item.address.name}} {{item.address.phone}} {{item.address.detail}}</view>
+  <view class="foot">配送费 ¥{{item.feeText}}　合计 <text class="price">¥{{item.totalText}}</text></view>
+</view>

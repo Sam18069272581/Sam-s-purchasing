@@ -1,0 +1,11 @@
+.go { margin-top: 30rpx; }
+.toolbar { display: flex; justify-content: space-between; padding: 20rpx 30rpx 0; }
+.link { color: #0b4ea2; font-size: 26rpx; }
+.item { display: flex; align-items: center; }
+.img { width: 140rpx; height: 140rpx; border-radius: 12rpx; margin: 0 16rpx; flex-shrink: 0; }
+.info { flex: 1; }
+.row { display: flex; justify-content: space-between; align-items: center; margin-top: 12rpx; }
+.line { display: flex; justify-content: space-between; padding: 8rpx 0; }
+.bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; display: flex; align-items: center; padding: 16rpx 24rpx; box-shadow: 0 -2rpx 12rpx rgba(0,0,0,.05); }
+.sum { flex: 1; text-align: right; margin-right: 20rpx; }
+.pay { width: 220rpx !important; margin: 0 !important; padding: 0 !important; height: 80rpx; line-height: 80rpx; }
