@@ -11,7 +11,8 @@
 .total { border-top: 2rpx solid #eef0f3; margin-top: 12rpx; padding-top: 18rpx; font-weight: 600; }
 .remark { width: 100%; min-height: 80rpx; font-size: 26rpx; }
 .tip { padding: 0 30rpx; }
-.bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; display: flex; align-items: center; padding: 16rpx 24rpx; box-shadow: 0 -2rpx 12rpx rgba(0,0,0,.05); }
+.bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; display: flex; align-items: center; padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom)); box-shadow: 0 -2rpx 12rpx rgba(0,0,0,.05); }
 .sum { flex: 1; }
 .big { font-size: 36rpx; }
 .pay { width: 240rpx !important; margin: 0 !important; height: 80rpx; line-height: 80rpx; padding: 0 !important; }
+.it-name .muted { margin-left: 8rpx; }

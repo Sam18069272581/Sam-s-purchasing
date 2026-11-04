@@ -12,3 +12,4 @@ page { background: #f5f6f8; color: #1f2329; font-size: 28rpx; font-family: -appl
 .stepper .plus { background: #0b4ea2; color: #fff; }
 .stepper .num { min-width: 56rpx; text-align: center; }
 .empty { text-align: center; padding: 160rpx 0; color: #8a9099; }
+.btn-primary::after { border: none; }

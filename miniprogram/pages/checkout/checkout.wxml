@@ -9,7 +9,7 @@
 
 <view class="card">
   <view class="it" wx:for="{{items}}" wx:key="id">
-    <view class="it-name">{{item.name}}<text class="muted"> {{item.spec}}</text></view>
+    <view class="it-name">{{item.name}}<text class="muted">{{item.spec}}</text></view>
     <view class="muted">¥{{item.priceText}} × {{item.qty}}</view>
     <view class="it-sub">¥{{item.subText}}</view>
   </view>
