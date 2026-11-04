@@ -32,7 +32,10 @@ async function open() {
     modalOk: async () => { await pg.click('.modal-mask:not(.out) .ok'); await pg.waitForTimeout(250); },
     modalCancel: async () => { await pg.click('.modal-mask:not(.out) .c'); await pg.waitForTimeout(250); },
     modalText: async () => pg.textContent('.modal-mask:not(.out) .modal'),
-    toast: async () => { const t = await pg.waitForSelector('.toast:not(.loading)'); return t.textContent(); },
+    // 等出现包含指定文字的提示；之前的提示可能还没消失，所以按文字找，不取第一个
+    waitToast: async text => {
+      await pg.waitForFunction(t => [...document.querySelectorAll('.toast:not(.loading)')].some(e => e.textContent.includes(t)), text, { timeout: 3000 });
+    },
     // 去掉所有空白，方便断言（WXML 里金额常被拆成多个 text）
     text: async sel => (await pg.textContent(sel)).replace(/\s+/g, ''),
     shot: async name => { if (shotDir) { fs.mkdirSync(shotDir, { recursive: true }); await pg.locator('#phone').screenshot({ path: path.join(shotDir, name + '.png') }); } },

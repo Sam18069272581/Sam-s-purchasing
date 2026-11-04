@@ -38,7 +38,7 @@ test('完整下单：选商品 → 购物车 → 登录 → 授权位置填地�
 
     // 4. 登录：先不勾协议 → 提示；勾选后登录 → 引导填地址
     await pg.click('.pg-mine .login .btn-primary');
-    assert.match(await app.toast(), /同意用户协议/);
+    await app.waitToast('同意用户协议');
     await pg.click('.pg-mine .agree');
     await pg.click('.pg-mine .login .btn-primary');
     await pg.waitForSelector('.modal-mask:not(.out)', { timeout: 3000 });
@@ -51,11 +51,11 @@ test('完整下单：选商品 → 购物车 → 登录 → 授权位置填地�
     await app.modalOk();
     assert.match(await app.text('.pg-address .map-text'), /宝兴县/);
     await pg.click('.pg-address .btn-primary');
-    assert.strictEqual(await app.toast(), '请填写收货人姓名');
+    await app.waitToast('请填写收货人姓名');
     await pg.fill('.pg-address .field:nth-child(2) input', '王秀兰');
     await pg.fill('.pg-address .field:nth-child(3) input', '1381234567');
     await pg.click('.pg-address .btn-primary');
-    await pg.waitForFunction(() => [...document.querySelectorAll('.toast')].some(t => t.textContent.includes('11 位手机号')));
+    await app.waitToast('11 位手机号');
     await pg.fill('.pg-address .field:nth-child(3) input', '13812345678');
     await app.shot('3-address');
     await pg.click('.pg-address .btn-primary');
@@ -159,7 +159,7 @@ test('购物车：加减数量、减到 0 确认移除、取消勾选后金额�
     await pg.waitForTimeout(100);
     assert.match(await app.text('.pg-cart .summary'), /配送费¥0\.00/);
     await pg.click('.pg-cart .pay');
-    assert.strictEqual(await app.toast(), '请选择商品');
+    await app.waitToast('请选择商品');
     assert.deepStrictEqual(app.errors, []);
   } finally { await app.close(); }
 });
