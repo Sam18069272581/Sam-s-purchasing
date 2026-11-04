@@ -28,6 +28,8 @@ Page({
   onRemark(e) { this.setData({ remark: e.detail.value }); },
 
   async onSubmit() {
+    // 网络慢时按钮还没来得及变灰，连点会重复下单；已下单成功也不再提交
+    if (this.submitting || this.data.success) return;
     if (!user.isLoggedIn()) {
       return wx.showModal({ content: '请先在「我的」页面微信登录', showCancel: false, confirmColor: '#14213D', success: () => wx.switchTab({ url: '/pages/mine/mine' }) });
     }
@@ -37,6 +39,7 @@ Page({
     if (config.minOrderAmount > 0 && this.data.goods < config.minOrderAmount) {
       return wx.showToast({ title: '满 ¥' + price.formatYuan(config.minOrderAmount) + ' 起送', icon: 'none' });
     }
+    this.submitting = true;
     this.setData({ submitting: true });
     try {
       const o = await order.submit({
@@ -53,6 +56,7 @@ Page({
     } catch (e) {
       wx.showToast({ title: e.message || '下单失败', icon: 'none' });
     } finally {
+      this.submitting = false;
       this.setData({ submitting: false });
     }
   },

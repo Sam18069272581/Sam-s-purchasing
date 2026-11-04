@@ -1,8 +1,19 @@
 // 购物车：保存在本机缓存里
+const { products } = require('../data/products.js');
 const KEY = 'cart_v1';
 
+// 读购物车时和商品表对一遍：价格、名称以商品表为准，已下架的商品去掉。
+// 否则店主改价后，用户购物车里还是旧价格，会按旧价下单。
 function load() {
-  try { return wx.getStorageSync(KEY) || []; } catch (e) { return []; }
+  let list;
+  try { list = wx.getStorageSync(KEY) || []; } catch (e) { return []; }
+  if (!Array.isArray(list)) return [];
+  const byId = {};
+  products.forEach(p => { byId[p.id] = p; });
+  return list.filter(i => byId[i.id] && i.qty > 0).map(i => {
+    const p = byId[i.id];
+    return Object.assign({}, i, { name: p.name, price: p.price, image: p.image, spec: p.spec, categoryId: p.categoryId });
+  });
 }
 function save(list) {
   wx.setStorageSync(KEY, list);

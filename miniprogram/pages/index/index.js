@@ -57,12 +57,12 @@ Page({
   },
 
   buildGroups(keyword) {
-    const kw = keyword.trim();
+    const kw = keyword.trim().toLowerCase();
     let n = 0;
     const groups = categories.map(c => ({
       id: c.id, name: c.name,
       items: products
-        .filter(p => p.categoryId === c.id && (!kw || p.name.indexOf(kw) >= 0))
+        .filter(p => p.categoryId === c.id && (!kw || p.name.toLowerCase().indexOf(kw) >= 0))
         .map(p => Object.assign({ p: fmt.split(p.price), bg: fmt.gradient(p.categoryId), initial: p.name.slice(0, 1), delay: Math.min(n++, 8) * 50 }, p))
     })).filter(g => g.items.length);
     this.setData({ groups }, () => this.measure());
@@ -70,7 +70,8 @@ Page({
 
   refreshCart(bump) {
     const list = cart.load();
-    const goods = price.goodsTotal(list);
+    // 底部条显示购物车里全部商品（和件数、角标口径一致），不管购物车页是否勾选
+    const goods = price.goodsTotal(list.map(i => Object.assign({}, i, { checked: true })));
     const th = config.delivery.freeThreshold;
     let freeTip = '配送费 ¥' + this.data.feeText + ' · 送货上门';
     if (th > 0 && goods > 0) freeTip = goods >= th ? '已免配送费' : '再买 ¥' + price.formatYuan(th - goods) + ' 免配送费';
