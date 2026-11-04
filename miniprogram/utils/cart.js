@@ -20,7 +20,7 @@ function add(product, qty = 1) {
   const list = load();
   const hit = list.find(i => i.id === product.id);
   if (hit) hit.qty += qty;
-  else list.push({ id: product.id, name: product.name, price: product.price, image: product.image, spec: product.spec, qty, checked: true });
+  else list.push({ id: product.id, name: product.name, price: product.price, image: product.image, spec: product.spec, categoryId: product.categoryId, qty, checked: true });
   save(list);
   return list;
 }

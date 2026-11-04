@@ -8,25 +8,47 @@
     "pages/orders/orders"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#0b4ea2",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#F6F4F0",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "山姆代购",
-    "backgroundColor": "#f5f6f8"
+    "backgroundColor": "#F6F4F0",
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "color": "#7a7f87",
-    "selectedColor": "#0b4ea2",
-    "backgroundColor": "#ffffff",
+    "color": "#9A9DA5",
+    "selectedColor": "#14213D",
+    "backgroundColor": "#FFFFFF",
     "list": [
-      { "pagePath": "pages/index/index", "text": "商品", "iconPath": "images/tab-home.png", "selectedIconPath": "images/tab-home-on.png" },
-      { "pagePath": "pages/cart/cart", "text": "购物车", "iconPath": "images/tab-cart.png", "selectedIconPath": "images/tab-cart-on.png" },
-      { "pagePath": "pages/mine/mine", "text": "我的", "iconPath": "images/tab-mine.png", "selectedIconPath": "images/tab-mine-on.png" }
-    ]
+      {
+        "pagePath": "pages/index/index",
+        "text": "商品",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-on.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/tab-cart.png",
+        "selectedIconPath": "images/tab-cart-on.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-on.png"
+      }
+    ],
+    "borderStyle": "white"
   },
   "permission": {
-    "scope.userLocation": { "desc": "用于确定你的收货位置，计算配送距离和配送费" }
+    "scope.userLocation": {
+      "desc": "用于确定你的收货位置，计算配送距离和配送费"
+    }
   },
-  "requiredPrivateInfos": ["chooseLocation", "getLocation"],
+  "requiredPrivateInfos": [
+    "chooseLocation",
+    "getLocation"
+  ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"

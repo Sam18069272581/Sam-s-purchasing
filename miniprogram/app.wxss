@@ -1,15 +1,64 @@
-page { background: #f5f6f8; color: #1f2329; font-size: 28rpx; font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; }
-.price { color: #e4393c; font-weight: 600; }
-.price .unit { font-size: 22rpx; }
-.muted { color: #8a9099; font-size: 24rpx; }
-.card { background: #fff; border-radius: 16rpx; margin: 20rpx 24rpx; padding: 24rpx; }
-.btn-primary { background: #0b4ea2 !important; color: #fff !important; border-radius: 44rpx !important; font-size: 30rpx !important; }
-.btn-primary[disabled] { background: #a9b9cf !important; }
-.placeholder-img { display: flex; align-items: center; justify-content: center; color: #fff; font-size: 44rpx; font-weight: 600; }
-.stepper { display: flex; align-items: center; }
-.stepper .s-btn { width: 48rpx; height: 48rpx; line-height: 44rpx; text-align: center; border-radius: 50%; font-size: 34rpx; }
-.stepper .minus { border: 2rpx solid #c9ced6; color: #555; }
-.stepper .plus { background: #0b4ea2; color: #fff; }
-.stepper .num { min-width: 56rpx; text-align: center; }
-.empty { text-align: center; padding: 160rpx 0; color: #8a9099; }
+/* ===== 设计变量 ===== */
+page {
+  --ink: #14213D;        /* 主色：墨蓝 */
+  --ink-2: #2A3A5E;
+  --gold: #B8935A;       /* 点缀：香槟金 */
+  --gold-soft: #F4ECDD;
+  --bg: #F6F4F0;         /* 暖白底 */
+  --card: #FFFFFF;
+  --text: #1A1D23;
+  --sub: #8B8F98;
+  --line: #EEEBE5;
+  --price: #C2412D;
+  --radius: 28rpx;
+  --shadow: 0 12rpx 40rpx rgba(20, 33, 61, 0.06);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 28rpx;
+  font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.num { font-family: "DIN Alternate", "SF Pro Display", -apple-system, "PingFang SC", sans-serif; font-variant-numeric: tabular-nums; }
+
+/* 价格：小 ¥ + 大整数 + 小数 */
+.price { color: var(--price); font-weight: 700; display: inline-flex; align-items: baseline; line-height: 1; }
+.price .yen { font-size: 22rpx; margin-right: 2rpx; }
+.price .int { font-size: 38rpx; }
+.price .dec { font-size: 24rpx; }
+.price.lg .yen { font-size: 26rpx; } .price.lg .int { font-size: 48rpx; } .price.lg .dec { font-size: 28rpx; }
+.price.ink { color: var(--ink); }
+
+.muted { color: var(--sub); font-size: 24rpx; }
+.card { background: var(--card); border-radius: var(--radius); margin: 24rpx 28rpx; padding: 32rpx; box-shadow: var(--shadow); }
+.section-title { font-size: 26rpx; color: var(--sub); letter-spacing: 2rpx; margin: 40rpx 36rpx 0; }
+
+/* 主按钮 */
+.btn-primary { background: linear-gradient(135deg, #22335A 0%, #14213D 100%) !important; color: #fff !important; border-radius: 999rpx !important; font-size: 30rpx !important; font-weight: 600 !important; letter-spacing: 2rpx; box-shadow: 0 12rpx 32rpx rgba(20, 33, 61, 0.25); transition: transform .15s ease, opacity .15s ease; }
 .btn-primary::after { border: none; }
+.btn-primary.button-hover { transform: scale(.97); opacity: .92; }
+.btn-primary[disabled] { background: #B7BCC8 !important; box-shadow: none; }
+
+/* 商品图占位：柔和渐变 + 首字 */
+.ph { display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, .92); font-size: 52rpx; font-weight: 600; letter-spacing: 0; }
+
+/* 数量步进器 */
+.stepper { display: flex; align-items: center; }
+.stepper .s-btn { width: 52rpx; height: 52rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34rpx; line-height: 1; transition: transform .15s ease; }
+.stepper .s-btn:active { transform: scale(.85); }
+.stepper .minus { border: 2rpx solid #D9D6CF; color: var(--ink); background: #fff; animation: slideIn .25s ease both; }
+.stepper .plus { background: var(--ink); color: #fff; box-shadow: 0 6rpx 16rpx rgba(20, 33, 61, .25); }
+.stepper .num { min-width: 60rpx; text-align: center; font-weight: 600; animation: slideIn .25s ease both; }
+
+.empty { text-align: center; padding: 200rpx 0 0; color: var(--sub); }
+.empty .icon { font-size: 96rpx; opacity: .25; margin-bottom: 24rpx; }
+
+/* ===== 动效 ===== */
+.enter { animation: fadeUp .45s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(32rpx); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(24rpx) scale(.8); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes ring { from { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } to { transform: scale(1); } }
+@keyframes shimmer { from { background-position: -400rpx 0; } to { background-position: 400rpx 0; } }
+.pop { animation: pop .35s ease; }

@@ -1,4 +1,9 @@
-.top { display: flex; justify-content: space-between; }
-.status { color: #0b4ea2; font-size: 26rpx; }
-.items { margin: 16rpx 0; line-height: 1.5; }
-.foot { text-align: right; margin-top: 12rpx; }
+.empty-title { font-size: 32rpx; font-weight: 600; color: var(--ink); margin-bottom: 12rpx; }
+.order { background: #fff; margin: 24rpx 28rpx; border-radius: var(--radius); padding: 32rpx; box-shadow: var(--shadow); }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.time { color: var(--sub); font-size: 24rpx; }
+.status { font-size: 22rpx; font-weight: 600; color: #8A6A3B; background: var(--gold-soft); padding: 6rpx 18rpx; border-radius: 20rpx; }
+.items { margin: 24rpx 0 12rpx; font-size: 30rpx; font-weight: 600; line-height: 1.5; color: var(--ink); }
+.addr { font-size: 24rpx; color: var(--sub); }
+.foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: 28rpx; padding-top: 24rpx; border-top: 2rpx dashed var(--line); }
+.no { margin-top: 16rpx; font-size: 20rpx; color: #B4B7BE; }
