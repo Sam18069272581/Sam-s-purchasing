@@ -12,10 +12,15 @@ async function submit(order) {
     if (!r.result || !r.result.ok) throw new Error((r.result && r.result.msg) || '下单失败');
     order = Object.assign(order, r.result.order);
   }
-  order.id = order.id || 'D' + Date.now();
+  const all = list();
+  if (!order.id) {
+    // 订单号用时间戳；同一毫秒内连下两单时往后顺延，避免订单号重复
+    let n = Date.now();
+    while (all.some(o => o.id === 'D' + n)) n++;
+    order.id = 'D' + n;
+  }
   order.createdAt = order.createdAt || Date.now();
   order.status = order.status || '待采购';
-  const all = list();
   all.unshift(order);
   wx.setStorageSync(KEY, all);
   return order;

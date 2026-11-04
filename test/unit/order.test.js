@@ -25,9 +25,13 @@ test('本机模式：订单存在本机，新订单排在最前', async () => {
 test('本机模式：连续快速下单，订单号不重复', async () => {
   const env = setup();
   const order = env.req('utils/order.js');
-  const a = await order.submit(draft());
-  const b = await order.submit(draft());
-  assert.notStrictEqual(a.id, b.id, '同一毫秒内下两单会得到相同订单号');
+  const now = Date.now;
+  Date.now = () => 1793809121435; // 固定时间，模拟同一毫秒内下两单
+  try {
+    const a = await order.submit(draft());
+    const b = await order.submit(draft());
+    assert.notStrictEqual(a.id, b.id, '同一毫秒内下两单会得到相同订单号');
+  } finally { Date.now = now; }
 });
 
 test('云开发模式：用云函数返回的订单号和金额', async () => {
