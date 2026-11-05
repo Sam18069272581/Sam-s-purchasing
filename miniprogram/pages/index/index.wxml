@@ -1,0 +1,65 @@
+<view class="wrap">
+<view class="header" style="padding-top: {{navTop}}px">
+  <view class="nav" style="height: {{navH}}px; padding-right: {{capsuleW}}px">
+    <view class="brand">{{shopName}}</view>
+  </view>
+  <view class="hero enter">
+    <view class="hero-title">山里也能买到好东西</view>
+    <view class="hero-sub"><text class="dot"></text>会员店正品代购 · {{freeTip}}</view>
+  </view>
+  <view class="search enter" style="animation-delay: 80ms">
+    <image class="search-icon" src="/images/ic-search.png" />
+    <input class="search-input" placeholder="搜索商品" placeholder-class="ph-text" confirm-type="search" bindinput="onSearch" value="{{keyword}}" />
+  </view>
+</view>
+
+<view class="body">
+  <scroll-view class="side" scroll-y>
+    <view wx:for="{{categories}}" wx:key="id" class="side-item {{activeCat === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="onCatTap">
+      <view class="bar"></view>{{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="main" scroll-y scroll-into-view="{{scrollTo}}" scroll-with-animation enhanced show-scrollbar="{{false}}" bindscroll="onScroll">
+    <view class="group" wx:for="{{groups}}" wx:for-item="g" wx:key="id" id="cat-{{g.id}}">
+      <view class="group-title">{{g.name}}</view>
+      <view wx:for="{{g.items}}" wx:key="id" class="goods enter" style="animation-delay: {{item.delay}}ms">
+        <image wx:if="{{item.image}}" class="goods-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view wx:else class="goods-img ph" style="background: {{item.bg}}">{{item.initial}}</view>
+        <view class="goods-info">
+          <view class="goods-name">{{item.name}}</view>
+          <view class="spec">{{item.spec}}</view>
+          <view class="goods-bottom">
+            <view class="price num"><text class="yen">¥</text><text class="int">{{item.p.int}}</text><text class="dec">{{item.p.dec}}</text></view>
+            <view class="stepper">
+              <block wx:if="{{qty[item.id]}}">
+                <view class="s-btn minus" data-id="{{item.id}}" catchtap="onMinus">−</view>
+                <view class="num {{popId === item.id ? 'pop' : ''}}">{{qty[item.id]}}</view>
+              </block>
+              <view class="s-btn plus" data-id="{{item.id}}" catchtap="onAdd">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!groups.length}}" class="empty">没有找到相关商品，换个词试试</view>
+    <view style="height: 200rpx"></view>
+  </scroll-view>
+</view>
+
+</view>
+
+<view class="cart-bar {{cartCount ? 'show' : ''}}" bindtap="goCart">
+  <view class="cart-icon {{cartBump ? 'pop' : ''}}">
+    <image class="cart-img" src="/images/cart-white.png" />
+    <view class="cart-count num">{{cartCount}}</view>
+  </view>
+  <view class="cart-mid">
+    <view class="cart-total num"><text class="yen">¥</text>{{cartTotal.int}}<text class="dec">{{cartTotal.dec}}</text></view>
+    <view class="cart-tip">{{freeTip}}</view>
+  </view>
+  <view class="cart-go">去结算</view>
+</view>
+
+<view wx:for="{{balls}}" wx:key="id" class="ball-x" style="left: {{item.x}}px; top: {{item.y}}px; transform: translateX({{item.go ? item.dx : 0}}px)">
+  <view class="ball-y" style="transform: translateY({{item.go ? item.dy : 0}}px)"></view>
+</view>

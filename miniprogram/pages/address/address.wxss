@@ -1,0 +1,19 @@
+.map-card { margin: 24rpx 28rpx; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.map-bg { position: relative; height: 220rpx; background: linear-gradient(160deg, #E9EFE6 0%, #DCE6E8 50%, #EDE6D8 100%); }
+.grid { position: absolute; inset: 0; opacity: .5; background-image: linear-gradient(rgba(255,255,255,.9) 2rpx, transparent 2rpx), linear-gradient(90deg, rgba(255,255,255,.9) 2rpx, transparent 2rpx); background-size: 60rpx 60rpx; transform: rotate(-12deg) scale(1.4); }
+.pin-dot { position: absolute; left: 50%; top: 50%; width: 36rpx; height: 36rpx; margin: -18rpx 0 0 -18rpx; border-radius: 50%; background: var(--sub); border: 6rpx solid #fff; box-shadow: 0 6rpx 16rpx rgba(0,0,0,.2); }
+.pin-dot.set { background: var(--ink); }
+.pin-dot.set::after { content: ""; position: absolute; left: 50%; top: 50%; width: 120rpx; height: 120rpx; margin: -60rpx 0 0 -60rpx; border-radius: 50%; background: rgba(20, 33, 61, .15); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+.map-info { padding: 28rpx 32rpx 8rpx; }
+.map-title { font-size: 30rpx; font-weight: 700; color: var(--ink); }
+.map-text { margin-top: 8rpx; font-size: 26rpx; color: var(--sub); }
+.map-btn { margin: 20rpx 32rpx 28rpx; display: inline-block; padding: 10rpx 28rpx; border-radius: 30rpx; background: var(--gold-soft); color: #8A6A3B; font-size: 24rpx; font-weight: 600; }
+.form { margin: 0 28rpx; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 8rpx 32rpx; }
+.field { padding: 24rpx 0; }
+.field + .field { border-top: 2rpx solid var(--line); }
+.label { font-size: 22rpx; color: var(--sub); letter-spacing: 2rpx; margin-bottom: 10rpx; }
+.val { font-size: 30rpx; height: 48rpx; }
+.ph-text { color: #C0C3C9; }
+.tip { margin: 24rpx 40rpx; color: var(--sub); font-size: 24rpx; line-height: 1.6; }
+.save { margin: 48rpx 28rpx; }

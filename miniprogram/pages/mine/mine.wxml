@@ -1,0 +1,51 @@
+<view class="top"></view>
+<view class="member enter">
+  <view class="member-row">
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" disabled="{{!u.loggedIn}}">
+      <image class="avatar" src="{{u.avatar || '/images/avatar.png'}}" mode="aspectFill" />
+    </button>
+    <view class="member-info">
+      <input wx:if="{{u.loggedIn}}" class="nick" type="nickname" placeholder="点击设置昵称" placeholder-class="nick-ph" value="{{u.nickname}}" bindblur="onNickname" />
+      <view wx:else class="nick">你好，欢迎来逛逛</view>
+      <view class="tag">{{u.loggedIn ? shopName + ' · 会员' : '登录后可下单、保存地址'}}</view>
+    </view>
+  </view>
+  <view class="member-foot">
+    <view><view class="k num">{{orderCount}}</view><view class="v">我的订单</view></view>
+    <view class="sep"></view>
+    <view><view class="k">送货上门</view><view class="v">山区专属配送</view></view>
+  </view>
+  <view class="shine"></view>
+</view>
+
+<view wx:if="{{!u.loggedIn}}" class="login enter" style="animation-delay: 80ms">
+  <button class="btn-primary" bindtap="onLogin">微信一键登录</button>
+  <view class="agree {{shake ? 'shake' : ''}}" bindtap="onAgree">
+    <view class="check {{agree ? 'on' : ''}}"><view class="tick"></view></view>
+    <text>我已阅读并同意《用户协议》和《隐私政策》</text>
+  </view>
+</view>
+
+<view class="menu enter" style="animation-delay: 140ms">
+  <view class="menu-item" hover-class="hover" bindtap="goAddress">
+    <view class="ic"><image src="/images/ic-pin.png" /></view>
+    <view class="mi-main">
+      <view class="mi-title">收货地址</view>
+      <view class="muted ellipsis" wx:if="{{u.address}}">{{u.address.name}} {{u.address.phone}} · {{u.address.detail}}</view>
+      <view class="muted" wx:else>未填写姓名、电话、地址</view>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+  <view class="menu-item" hover-class="hover" bindtap="goOrders">
+    <view class="ic"><image src="/images/ic-order.png" /></view>
+    <view class="mi-main"><view class="mi-title">我的订单</view></view>
+    <text class="muted num">{{orderCount}} 笔</text><text class="arrow">›</text>
+  </view>
+  <button class="menu-item contact" hover-class="hover" open-type="contact">
+    <view class="ic"><image src="/images/ic-chat.png" /></view>
+    <view class="mi-main"><view class="mi-title">联系代购员</view></view>
+    <text class="arrow">›</text>
+  </button>
+</view>
+
+<view wx:if="{{u.loggedIn}}" class="logout" bindtap="onLogout">退出登录</view>

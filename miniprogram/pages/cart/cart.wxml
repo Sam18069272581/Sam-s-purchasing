@@ -1,0 +1,39 @@
+<view wx:if="{{!list.length}}" class="empty enter">
+  <view class="empty-art"><image src="/images/tab-cart.png" /></view>
+  <view class="empty-title">购物车还是空的</view>
+  <view class="muted">去挑点好东西吧</view>
+  <button class="btn-primary go" bindtap="goShop">去逛逛</button>
+</view>
+<block wx:else>
+  <view class="toolbar enter"><text class="count">共 {{list.length}} 种商品</text><text class="link" bindtap="onClear">删除选中</text></view>
+  <view class="list">
+    <view class="item enter {{removing && removing.indexOf(',' + item.id + ',') >= 0 ? 'removing' : ''}}" style="animation-delay: {{item.delay}}ms" wx:for="{{list}}" wx:key="id">
+      <view class="check {{item.checked ? 'on' : ''}}" data-id="{{item.id}}" bindtap="onToggle"><view class="tick"></view></view>
+      <image wx:if="{{item.image}}" class="img" src="{{item.image}}" mode="aspectFill" />
+      <view wx:else class="img ph" style="background: {{item.bg}}">{{item.initial}}</view>
+      <view class="info">
+        <view class="name">{{item.name}}</view>
+        <view class="muted">{{item.spec}}</view>
+        <view class="row">
+          <view class="price num"><text class="yen">¥</text><text class="int">{{item.p.int}}</text><text class="dec">{{item.p.dec}}</text></view>
+          <view class="stepper">
+            <view class="s-btn minus" data-id="{{item.id}}" bindtap="onMinus">−</view>
+            <view class="num {{popId === item.id ? 'pop' : ''}}">{{item.qty}}</view>
+            <view class="s-btn plus" data-id="{{item.id}}" bindtap="onPlus">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="card summary enter" style="animation-delay: 200ms">
+    <view class="line"><text class="muted-28">商品金额</text><text class="num">¥{{goodsText}}</text></view>
+    <view class="line"><text class="muted-28">配送费</text><text class="num">¥{{feeText}}</text></view>
+    <view class="free" wx:if="{{freeTip}}">{{freeTip}}</view>
+  </view>
+  <view style="height: 180rpx"></view>
+  <view class="bottom">
+    <view class="all" bindtap="onToggleAll"><view class="check {{allChecked ? 'on' : ''}}"><view class="tick"></view></view>全选</view>
+    <view class="sum"><text class="sum-label">合计</text><view class="price lg num"><text class="yen">¥</text><text class="int">{{total.int}}</text><text class="dec">{{total.dec}}</text></view></view>
+    <button class="btn-primary pay" bindtap="onCheckout">结算 <text class="num">{{checkedCount}}</text></button>
+  </view>
+</block>

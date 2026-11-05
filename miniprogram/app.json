@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cart/cart",
+    "pages/mine/mine",
+    "pages/checkout/checkout",
+    "pages/address/address",
+    "pages/orders/orders"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F6F4F0",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "山姆代购",
+    "backgroundColor": "#F6F4F0",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9A9DA5",
+    "selectedColor": "#14213D",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "商品",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-on.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/tab-cart.png",
+        "selectedIconPath": "images/tab-cart-on.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-on.png"
+      }
+    ],
+    "borderStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于确定你的收货位置，计算配送距离和配送费"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseLocation",
+    "getLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

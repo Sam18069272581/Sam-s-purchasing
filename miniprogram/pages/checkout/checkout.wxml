@@ -1,0 +1,55 @@
+<view class="addr enter" bindtap="editAddress">
+  <view class="addr-pin">⌖</view>
+  <view class="addr-body" wx:if="{{address && address.name}}">
+    <view class="addr-top"><text class="b">{{address.name}}</text><text class="phone num">{{address.phone}}</text></view>
+    <view class="addr-text">{{address.region}} {{address.detail}}</view>
+  </view>
+  <view class="addr-body addr-empty" wx:else>填写收货地址</view>
+  <text class="arrow">›</text>
+  <view class="stripe"></view>
+</view>
+
+<view class="card enter" style="animation-delay: 60ms">
+  <view class="card-head"><text>商品清单</text><text class="muted">共 {{count}} 件</text></view>
+  <view class="it" wx:for="{{items}}" wx:key="id">
+    <view class="thumb ph" style="background: {{item.bg}}">{{item.initial}}</view>
+    <view class="it-main">
+      <view class="it-name">{{item.name}}</view>
+      <view class="muted">{{item.spec}} · ¥{{item.priceText}} × {{item.qty}}</view>
+    </view>
+    <view class="it-sub num">¥{{item.subText}}</view>
+  </view>
+</view>
+
+<view class="card enter" style="animation-delay: 120ms">
+  <view class="line"><text class="lbl">商品总金额</text><text class="num">¥{{goodsText}}</text></view>
+  <view class="line"><text class="lbl">配送费</text><text class="num">¥{{feeText}}</text></view>
+  <view class="muted" wx:if="{{feeNote}}">{{feeNote}}</view>
+  <view class="line total"><text>应付总额</text><view class="price lg num"><text class="yen">¥</text><text class="int">{{total.int}}</text><text class="dec">{{total.dec}}</text></view></view>
+</view>
+
+<view class="card enter" style="animation-delay: 180ms">
+  <view class="card-head"><text>备注</text></view>
+  <textarea class="remark" placeholder="如：没货可换同类、送到村口小卖部" placeholder-class="ph-text" maxlength="200" bindinput="onRemark" auto-height />
+</view>
+<view class="tip">提交后代购员会联系你确认商品和收款方式</view>
+<view style="height: 200rpx"></view>
+
+<view class="bottom">
+  <view class="sum"><text class="sum-label">应付</text><view class="price lg num"><text class="yen">¥</text><text class="int">{{total.int}}</text><text class="dec">{{total.dec}}</text></view></view>
+  <button class="btn-primary pay" loading="{{submitting}}" disabled="{{submitting}}" bindtap="onSubmit">提交订单</button>
+</view>
+
+<view wx:if="{{success}}" class="mask">
+  <view class="sheet">
+    <view class="ok-ring"><view class="ok-tick"></view></view>
+    <view class="ok-title">下单成功</view>
+    <view class="ok-sub">代购员会尽快联系你确认商品</view>
+    <view class="ok-box">
+      <view class="line"><text class="lbl">订单号</text><text class="num">{{success.id}}</text></view>
+      <view class="line"><text class="lbl">应付金额</text><text class="num b">¥{{success.total}}</text></view>
+    </view>
+    <button class="btn-primary" bindtap="goOrders">查看订单</button>
+    <view class="ok-link" bindtap="goHome">继续逛逛</view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+<view wx:if="{{!list.length}}" class="empty enter"><view class="empty-title">还没有订单</view><view class="muted">下单后可以在这里查看进度</view></view>
+<view class="order enter" style="animation-delay: {{item.delay}}ms" wx:for="{{list}}" wx:key="id">
+  <view class="top"><text class="time num">{{item.timeText}}</text><text class="status">{{item.status}}</text></view>
+  <view class="items">{{item.summaryText}}</view>
+  <view class="addr">送至 {{item.address.name}} · {{item.address.detail}}</view>
+  <view class="foot">
+    <text class="muted">共 {{item.count}} 件 · 配送费 ¥{{item.feeText}}</text>
+    <view class="price lg ink num"><text class="yen">¥</text><text class="int">{{item.total.int}}</text><text class="dec">{{item.total.dec}}</text></view>
+  </view>
+  <view class="no num">订单号 {{item.id}}</view>
+</view>
