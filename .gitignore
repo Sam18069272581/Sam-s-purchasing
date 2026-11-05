@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 project.private.config.json
 miniprogram_npm/
+e2e-shots/

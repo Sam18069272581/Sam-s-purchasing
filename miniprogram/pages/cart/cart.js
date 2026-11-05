@@ -48,7 +48,7 @@ Page({
   },
   // 删除时先播放收起动画，再真正删除
   removeAnimated(ids) {
-    this.setData({ removing: ids.join(',') });
+    this.setData({ removing: ',' + ids.join(',') + ',' }); // 前后加逗号，避免 p1 误命中 p10
     setTimeout(() => {
       let list = cart.load();
       ids.forEach(id => { list = cart.setQty(id, 0); });

@@ -12,7 +12,7 @@
 1. 安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 2. 导入本目录（`project.config.json` 所在目录）。没有 AppID 可先用"测试号"
 3. 直接编译预览即可，默认不依赖云开发，购物车/地址/订单都存在本机
-4. 计算逻辑单测：`node test/price.test.js`
+4. 自动化测试：`npm install` 后运行 `npm test`，详见下方「自动化测试」
 
 ## 配送费
 当前规则（店主已确认）：**每单 ¥3，没有免配送费**。在 `miniprogram/config.js` 的 `delivery` 里改，单位为"分"：
@@ -33,6 +33,22 @@
 - 在 `config.js` 填 `cloudEnv`，开通云开发，上传 `cloudfunctions/login` 和 `cloudfunctions/createOrder`，建 `orders` 集合。这样订单会集中存到云端，代购员可在云开发控制台查看
 - 后台填写《用户隐私保护指引》，声明"位置信息"（地图选点）用途
 - 当前不含在线支付，下单后由代购员联系确认、收款
+
+## 自动化测试
+需要 Node.js 18+。第一次运行先 `npm install`。
+
+| 命令 | 测什么 |
+|---|---|
+| `npm run test:unit` | 单元测试：金额与配送费、购物车、登录与地址校验、下单、商品数据、云函数 |
+| `npm run test:integration` | 页面集成测试：在 node 里模拟 `wx` 接口，逐个跑 6 个页面的逻辑；并静态检查 WXML 绑定的方法、图片、跳转地址是否都存在 |
+| `npm run test:e2e` | 端到端测试：把小程序渲染成网页，用 Chromium 像用户一样点完整流程（加购 → 购物车 → 登录 → 选地址 → 下单 → 订单）。设 `E2E_SHOTS=目录` 会保存每一步截图 |
+| `npm test` | 以上全部 |
+
+每次推送和提 PR，GitHub Actions 会自动跑全部测试（`.github/workflows/test.yml`）。
+
+端到端测试用的是简化的渲染器（`test/e2e/sim/`），能发现逻辑和流程问题，但不能代替真机和微信开发者工具预览；微信官方的 miniprogram-automator 需要开发者工具，没法在 CI 的 Linux 机器上跑。
+
+改了 `miniprogram/data/products.js` 或 `config.js` 后，要运行一次 `node scripts/sync-cloud.js`，把商品表和配送规则同步给云函数（云函数在服务端重新算价，防止改包篡改金额）。忘了同步测试会报错提醒。
 
 ## 开源参考与许可证
 本项目代码为全新编写，**没有复制任何第三方代码**，只参考了以下开源项目的功能划分和页面结构（分类页左右布局、购物车底栏、结算页结构）：

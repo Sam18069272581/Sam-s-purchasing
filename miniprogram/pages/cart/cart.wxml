@@ -7,7 +7,7 @@
 <block wx:else>
   <view class="toolbar enter"><text class="count">共 {{list.length}} 种商品</text><text class="link" bindtap="onClear">删除选中</text></view>
   <view class="list">
-    <view class="item enter {{removing && removing.indexOf(item.id) >= 0 ? 'removing' : ''}}" style="animation-delay: {{item.delay}}ms" wx:for="{{list}}" wx:key="id">
+    <view class="item enter {{removing && removing.indexOf(',' + item.id + ',') >= 0 ? 'removing' : ''}}" style="animation-delay: {{item.delay}}ms" wx:for="{{list}}" wx:key="id">
       <view class="check {{item.checked ? 'on' : ''}}" data-id="{{item.id}}" bindtap="onToggle"><view class="tick"></view></view>
       <image wx:if="{{item.image}}" class="img" src="{{item.image}}" mode="aspectFill" />
       <view wx:else class="img ph" style="background: {{item.bg}}">{{item.initial}}</view>

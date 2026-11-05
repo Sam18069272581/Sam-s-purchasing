@@ -1,0 +1,37 @@
+<title>山姆代购小程序</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>/*SHELL_CSS*/</style>
+<main class="sh-wrap">
+  <header class="sh-intro">
+    <p class="eyebrow">可点击预览 · 第二版</p>
+    <h1>山姆代购小程序</h1>
+    <p>直接在手机框里点，加购、购物车、登录、填地址、下单都能走一遍。微信登录和地图选点用演示数据代替，刷新页面数据会清空。</p>
+    <ul class="try">
+      <li>点商品右下角的 <b>+</b>，看小球飞进购物车</li>
+      <li>点左侧分类，或上下滑动商品列表</li>
+      <li>购物车里把数量减到 0，看商品收起</li>
+      <li>登录、填地址后提交订单，看下单成功弹层</li>
+    </ul>
+    <button id="reset" type="button">重新开始</button>
+  </header>
+  <div class="device-wrap" id="device-wrap">
+    <div class="device" id="phone">
+      <div id="statusbar"><span>9:41</span><span class="sig">●●●● 5G ▮</span></div>
+      <div id="nav"><span id="nav-back">‹</span><span id="nav-title"></span></div>
+      <div id="capsule" class="capsule dark"><span>•••</span><i></i><span>◎</span></div>
+      <div id="stage"></div>
+      <div id="tabbar"></div>
+      <div class="home-ind"></div>
+      <div id="overlay"></div>
+    </div>
+  </div>
+</main>
+<script>/*SCRIPTS*/</script>
+<script>
+document.getElementById('reset').onclick = () => window.__proto.reset();
+(function fit() {
+  const wrap = document.getElementById('device-wrap'), d = document.getElementById('phone');
+  function f() { const avail = wrap.clientWidth - 24; const s = Math.min(1, avail / 375); d.style.transform = 'scale(' + s + ')'; wrap.style.height = (812 * s + 24) + 'px'; }
+  window.addEventListener('resize', f); f();
+})();
+</script>
